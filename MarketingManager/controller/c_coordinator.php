@@ -5,7 +5,7 @@ class c_Coordinator extends c_AdRouter{
 	
 	public function getInsertCoordinator()
 	{
-		$this->loadView('v_insertcoordinator');
+		$this->loadView('v_insertCoordinator');
 	}
 	public function postInsertCoordinator($name,$email,$md5pass) 
 	{
@@ -28,7 +28,7 @@ class c_Coordinator extends c_AdRouter{
 		$m_coordinator = new m_Coordinator();
 		$coordinator =$m_coordinator->getOneCoordinator($id);
 		$data = array('Coordinator'=>$coordinator);
-		$this->loadView("v_updatecoordinator" , $data);
+		$this->loadView("v_updateCoordinator" , $data);
 	}
 
 	public function postUpdateCoordinator($id)
