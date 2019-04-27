@@ -5,7 +5,7 @@ class c_Student extends c_AdRouter{
 
 	public function getInsertStudent()
 	{
-		$this->loadView('v_insertstudent');
+		$this->loadView('v_insertStudent');
 	}
 	public function postInsertStudent($name,$email,$md5pass,$faculty)
 	{
