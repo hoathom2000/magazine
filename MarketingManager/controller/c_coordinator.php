@@ -7,14 +7,21 @@ class c_Coordinator extends c_AdRouter{
 	{
 		$this->loadView('v_insertCoordinator');
 	}
-	public function postInsertCoordinator($name,$email,$md5pass) 
+	public function postInsertCoordinator($name,$email,$md5pass,$faculty) 
 	{
 		$m_coordinator= new m_Coordinator();
-		$id = $m_coordinator->insertCoordinator($name,$email,$md5pass);
+		$id = $m_coordinator->insertCoordinator($name,$email,$md5pass,$faculty);
 		if($id>0)
 		{
 			header('location:coordinator.php');
 		}
+	}
+	function getFaculty()
+	{
+		$m_coordinator = new m_Coordinator();
+		$FacultyList = $m_coordinator->getAllFaculty();
+		return array('FacultyList' => $FacultyList);
+
 	}
 	function getCoordinator()
 	{
