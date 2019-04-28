@@ -2,15 +2,24 @@
 require_once('model/dbconnect.php');
 class m_Coordinator extends DbConnect{
 	
-	public function insertCoordinator($name,$email,$pass)
+	public function insertCoordinator($name,$email,$pass,$faculty)
 	{
-		$sql = "INSERT INTO coordinator(CoorName, CoorEmail,CoorPassword, Status) VALUES (?,?,?,'accept')";
+		$sql = "INSERT INTO coordinator(CoorName, CoorEmail,CoorPassword, Status, CoorImage, FacultyID) VALUES (?,?,?,'accept','user123.jpg',?)";
 		$this->setQuery($sql);
-		$result = $this->execute(array($name,$email,md5($pass)));
+		$result = $this->execute(array($name,$email,md5($pass),$faculty));
 		if($result)
 			return $this->getLastInserted();
 		else
 			return false;
+	}
+	public function getAllFaculty()
+	{
+		//create query
+		$sql = "SELECT * FROM faculty";
+		//set query to pdo
+		$this->setQuery($sql);
+		//run the query
+		return $this->getAllRows();
 	}
 	public function getAllCoordinator()
 	{
