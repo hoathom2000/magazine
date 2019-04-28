@@ -8,11 +8,13 @@ if(isset($_POST['insertCoordinator']))
     $coordinatoremail = $_POST['coordinatoremail'];
   if(isset($_POST['coordinatorpass']))
     $md5pass = $_POST['coordinatorpass'];
+  if(isset($_POST['faculty']))
+    $faculty = $_POST['faculty'];
 
-  if(isset($_POST['coordinatorname']) && isset($_POST['coordinatoremail']) && isset($_POST['coordinatorpass']))
+  if(isset($_POST['coordinatorname']) && isset($_POST['coordinatoremail']) && isset($_POST['coordinatorpass'])&& isset($_POST['faculty']))
     {
       $cadd = new c_Coordinator();
-      $cadd->postInsertCoordinator($coordinatorname,$coordinatoremail,$md5pass); 
+      $cadd->postInsertCoordinator($coordinatorname,$coordinatoremail,$md5pass,$faculty); 
     }
 }?>
 <h1>
@@ -41,6 +43,21 @@ if(isset($_POST['insertCoordinator']))
                   <label for="exampleInputFile">Password</label><br>
                   <input type="password" name="coordinatorpass" class="form-control" placeholder="Enter Password" value="1" readonly="readonly"">
                 </div>
+		<div class="form-group">
+                  <label for="">Faculty</label>
+                  <select name="faculty">
+                    <?php
+                $cwritten = new c_Coordinator();
+                $data2 = $cwritten->getFaculty();
+                $facultylist = $data2['FacultyList'];
+                    foreach($facultylist as $faculty)
+                    {                                                        
+                  ?>
+                    <option value="<?=$faculty->FacultyID?>"><?=$faculty->FacultyName?></option>
+                  <?php }?>
+
+                  </select>
+                </div>																
               </div>
               <!-- /.box-body -->
 
